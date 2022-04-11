@@ -2,4 +2,4 @@
 .DS_store
 ._*
 thumbs.db
-tmp/
+/tmp/
