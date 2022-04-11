@@ -3,17 +3,41 @@
 }
 
 .header {
-
+    
+    border: solid 2px black;
+    text-align: center;
+    padding: 0 0 0 0px;
 }
 
 .pageBox {
+    display: flex;
+    border: solid 2px black;
+    width: 100%;
+    height: 100%;
+    
+}
 
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 500px;
+    
 }
 
 .searchBox {
-
+    border: solid 2px black;
+    display: flex;
+    width: 49%;
+    height: 800px;
 }
 
 .trailer {
-    
+    border: solid 2px red;
+    display: flex;
+    width: 49%;
+}
+
+.btn {
+    height: 40px;
 }
