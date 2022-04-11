@@ -5,14 +5,48 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+            integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
         <section class="header">
-            <section class="pageBox">
-                <section class="searchBox">
-                    <section class="trailer"></section>
-                </section>
+            <h1>Quick Movie Lookup</h1>
+        </section>
+        <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                id="enteredMovie"
+                placeholder=""
+                aria-label=""
+                aria-describedby="basic-addon1"
+            />
+            <div class="input-group-append">
+                <button class="btn btn-success" type="button" id="searchBtn">
+                    Search
+                </button>
+            </div>
+        </div>
+        <section class="pageBox">
+            <section class="searchBox">
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Possimus, ex!
+                </p>
+            </section>
+            <section class="trailer">
+                <iframe
+                    width="600"
+                    height="400"
+                    src="https://www.youtube.com/embed/kGIM_yNzeUo"
+                ></iframe>
             </section>
         </section>
+    <script src="./assets/js/script.js"></script>
     </body>
 </html>
