@@ -1,5 +1,12 @@
 let searchBtn = document.querySelector("#searchBtn");
 let enteredMovie;
+let movieTitle = document.querySelector("#movieTitle");
+let castMember1 = document.querySelector("#castMember1");
+let castMember2 = document.querySelector("#castMember2");
+let castMember3 = document.querySelector("#castMember3");
+let synopsis = document.querySelector("#movieSynopsis");
+let moviePoster = document.querySelector("#moviePoster");
+let youTubeVideo = document.querySelector("#youtubeVideo");
 searchBtn.addEventListener("click", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector("#enteredMovie").value;
@@ -9,14 +16,22 @@ searchBtn.addEventListener("click", function (event) {
 
 function pullMovieInfo() {
     let apiKeyOMDB = "477f75d3";
+    let castMembers = [];
     fetch(
-        `http://www.omdbapi.com/?apikey=${apiKeyOMDB}&t=${enteredMovie}&type=movie`
+        `http://www.omdbapi.com/?apikey=${apiKeyOMDB}&t=${enteredMovie}&type=movie&plot=full`
     )
         .then((response) => response.json())
         .then((data) => {
+            movieTitle.innerText = data.Title + " (" + data.Year + ")";
+            castMembers = data.Actors.split(", ");
+            castMember1.innerText = castMembers[0];
+            castMember2.innerText = castMembers[1];
+            castMember3.innerText = castMembers[2];
+            synopsis.innerText = data.Plot;
+            moviePoster.src = data.Poster;
             console.log(data);
             console.log(data.imdbID);
-            storeMovieData(data)
+            storeMovieData(data);
         });
 }
 
@@ -30,6 +45,8 @@ function pullMovieTrailer() {
     )
         .then((response) => response.json())
         .then((data) => {
+            youTubeVideo.src = "https://www.youtube.com/embed/"+data.items[0].id.videoId;
+            console.log(data);
             console.log(data.items[0].id.videoId);
         });
 }
