@@ -1,10 +1,6 @@
 let inputForm = document.querySelector("#inputForm");
 let enteredMovie;
 // read movieSearches from localStorage if available, otherwise set to empty array
-let movieSearches = JSON.parse(localStorage.getItem("movieSearches"));
-if (movieSearches === null) {
-    movieSearches = [];
-}
 // set data from each fetch to a var for easy manipulation
 let movieData;
 let youtubeData;
@@ -17,7 +13,7 @@ let moviePoster = document.querySelector("#moviePoster");
 let youTubeVideo = document.querySelector("#youtubeVideo");
 inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    enteredMovie = document.querySelector("#enteredMovie").value;
+    enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
     pullMovieTrailer();
     inputForm.reset();
@@ -63,14 +59,23 @@ function pullMovieTrailer() {
         });
 }
 
+let movieSearches = JSON.parse(localStorage.getItem("movieSearches"));
+if (movieSearches === null) {
+    movieSearches = {};
+}
 function storeMovieSearch(data, search) {
     // build object for the current search
     search = search.toLowerCase();
-    currentSearch = {
+    if (movieSearches[search] === undefined) {
+        movieSearches[search] = {};
+    }
+    console.log(search);
+    let currentSearch = {};
+    currentSearch[search] = {
         imdb: data.imdbID,
         search: search,
     };
-    movieSearches.unshift(currentSearch);
+    movieSearches[search] = currentSearch;
     console.log(movieSearches);
     // submit to localStorage
     localStorage.setItem("movieSearches", JSON.stringify(movieSearches));
