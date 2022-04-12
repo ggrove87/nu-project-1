@@ -16,7 +16,7 @@ function pullMovieInfo() {
         .then((data) => {
             console.log(data);
             console.log(data.imdbID);
-            // storeMovieData(data)
+            storeMovieData(data)
         });
 }
 
