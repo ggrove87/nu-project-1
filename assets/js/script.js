@@ -7,7 +7,7 @@ let castMember3 = document.querySelector("#castMember3");
 let synopsis = document.querySelector("#movieSynopsis");
 let moviePoster = document.querySelector("#moviePoster");
 let youTubeVideo = document.querySelector("#youtubeVideo");
-inputForm.addEventListener("click", function (event) {
+inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector("#enteredMovie").value;
     pullMovieInfo();
