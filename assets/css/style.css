@@ -5,6 +5,7 @@
 body {
     background: linear-gradient(-45deg, #5788fa, #0202fe, #23a6d5, #1406d5);
     /* height: 100%; */
+    /* color:white; */
 }
 
 .header {
@@ -18,16 +19,15 @@ body {
     /* flex-wrap: wrap; */
     justify-content: center;
     width: 50%;
-    padding: 20px;
+    /* padding: 2%; */
 }
-.pageBox {
-    display: flex;
-    /* outline: solid 2px black; */
-    width: 98vw;
-    height: 98vh;
-    /* max-height: 1100px; */
-    margin: 2%;
-    
+
+.form-control {
+    box-shadow: 0px 0px 10px 2px black;
+}
+
+.btn {
+    box-shadow: 0px 0px 10px 2px black;
 }
 
 .input-group {
@@ -38,6 +38,18 @@ body {
     
 }
 
+.pageBox {
+    display: flex;
+    /* outline: solid 2px black; */
+    width: 98vw;
+    height: 98vh;
+    /* max-height: 1100px; */
+    margin: 2%;
+    
+}
+
+
+
 .searchBox {
     /* outline: solid 2px black; */
     /* display: flex; */
@@ -45,16 +57,33 @@ body {
     height: 100%;
     padding: 1%;
     box-shadow: 0px 0px 10px 2px black;
+    /* background-color: grey; */
+    background: linear-gradient(-45deg, #707070, #383839, #606162, #1406d5);
 }
 
-.form-control {
+.movieHeaderBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    /* width: 50%; */
+}
+
+.movieTitleBox {
+    width: 81%;
+    padding: 1%;
+}
+
+.moviePosterBox {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+
+#moviePoster {
     box-shadow: 0px 0px 10px 2px black;
 }
 
-.btn {
-    box-shadow: 0px 0px 10px 2px black;
-}
-.trailer {
+.trailerBox {
     /* outline: solid 2px black; */
     /* display: flex; */
     width: 49%;
@@ -63,8 +92,14 @@ body {
     padding: 20px;
     box-shadow: 0px 0px 10px 2px black;
     height: 100%;
+    /* background-color: grey; */
+    background: linear-gradient(-45deg, #1406d5, #606162, #707070, #383839);
 }
 
-.btn {
-    /* height: 40px; */
+.trailer h1 {
+    text-align: center;
+}
+
+#youtubeVideo {
+    box-shadow: 0px 0px 10px 2px black;
 }
