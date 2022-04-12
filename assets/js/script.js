@@ -9,7 +9,7 @@ let moviePoster = document.querySelector("#moviePoster");
 let youTubeVideo = document.querySelector("#youtubeVideo");
 inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    enteredMovie = document.querySelector("enteredMovie").value;
+    enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
     pullMovieTrailer();
     inputForm.reset();
