@@ -46,11 +46,9 @@ function pullMovieInfo() {
 }
 
 function pullMovieTrailer() {
-    // jason: AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4
-    // josh: AIzaSyDVFRBhkTYIeODoHkwB_HGX0a0Otbip_NM
     let youtubeKeys = [
-        "AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4",
-        "AIzaSyDVFRBhkTYIeODoHkwB_HGX0a0Otbip_NM",
+        "AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4", // jason
+        "AIzaSyDVFRBhkTYIeODoHkwB_HGX0a0Otbip_NM", // josh
     ];
     let apiKeyYouTube = youtubeKeys[youtubeKeyIndex];
     youtubeKeyIndex += 1;
