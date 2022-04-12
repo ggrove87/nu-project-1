@@ -1,6 +1,7 @@
 let inputForm = document.querySelector("#inputForm");
 let enteredMovie;
 let movieTitle = document.querySelector("#movieTitle");
+let trailerHeader = document.querySelector("#trailerHeader");
 let castMember1 = document.querySelector("#castMember1");
 let castMember2 = document.querySelector("#castMember2");
 let castMember3 = document.querySelector("#castMember3");
@@ -24,6 +25,7 @@ function pullMovieInfo() {
         .then((response) => response.json())
         .then((data) => {
             movieTitle.innerText = data.Title + " (" + data.Year + ")";
+            trailerHeader.innerText = "Movie clips from "+data.Title + " (" + data.Year + ")"
             castMembers = data.Actors.split(", ");
             castMember1.innerText = castMembers[0];
             castMember2.innerText = castMembers[1];
@@ -46,7 +48,8 @@ function pullMovieTrailer() {
     )
         .then((response) => response.json())
         .then((data) => {
-            youTubeVideo.src = "https://www.youtube.com/embed/"+data.items[0].id.videoId;
+            youTubeVideo.src =
+                "https://www.youtube.com/embed/" + data.items[0].id.videoId;
             console.log(data);
             console.log(data.items[0].id.videoId);
         });
