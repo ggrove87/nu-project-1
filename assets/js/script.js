@@ -1,5 +1,9 @@
 let inputForm = document.querySelector("#inputForm");
 let enteredMovie;
+// read movieSearches from localStorage if available, otherwise set to empty array
+// set data from each fetch to a var for easy manipulation
+let movieData;
+let youtubeData;
 let movieTitle = document.querySelector("#movieTitle");
 let trailerHeader = document.querySelector("#trailerHeader");
 let castMember1 = document.querySelector("#castMember1");
@@ -32,22 +36,24 @@ function pullMovieInfo() {
             castMember3.innerText = castMembers[2];
             synopsis.innerText = data.Plot;
             moviePoster.src = data.Poster;
+            movieData = data;
             console.log(data);
             console.log(data.imdbID);
-            storeMovieData(data);
+            storeMovieSearch(data, enteredMovie);
         });
 }
 
 function pullMovieTrailer() {
     let apiKeyYouTube = "AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4";
     fetch(
-        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${enteredMovie}&key=${apiKeyYouTube}`,
+        `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${enteredMovie}+trailer&key=${apiKeyYouTube}`,
         {
             header: "Accept: application/json",
         }
     )
         .then((response) => response.json())
         .then((data) => {
+            youtubeData = data;
             youTubeVideo.src =
                 "https://www.youtube.com/embed/" + data.items[0].id.videoId;
             console.log(data);
@@ -55,6 +61,24 @@ function pullMovieTrailer() {
         });
 }
 
-function storeMovieData(data) {
-    localStorage.setItem(data.imdbID, enteredMovie);
+let movieSearches = JSON.parse(localStorage.getItem("movieSearches"));
+if (movieSearches === null) {
+    movieSearches = {};
+}
+function storeMovieSearch(data, search) {
+    // build object for the current search
+    search = search.toLowerCase();
+    if (movieSearches[search] === undefined) {
+        movieSearches[search] = {};
+    }
+    console.log(search);
+    let currentSearch = {};
+    currentSearch[search] = {
+        imdb: data.imdbID,
+        search: search,
+    };
+    movieSearches[search] = currentSearch;
+    console.log(movieSearches);
+    // submit to localStorage
+    localStorage.setItem("movieSearches", JSON.stringify(movieSearches));
 }
