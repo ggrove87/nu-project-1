@@ -5,6 +5,7 @@ let enteredMovie;
 let movieData;
 let youtubeData;
 let movieTitle = document.querySelector("#movieTitle");
+let trailerHeader = document.querySelector("#trailerHeader");
 let castMember1 = document.querySelector("#castMember1");
 let castMember2 = document.querySelector("#castMember2");
 let castMember3 = document.querySelector("#castMember3");
@@ -28,6 +29,7 @@ function pullMovieInfo() {
         .then((response) => response.json())
         .then((data) => {
             movieTitle.innerText = data.Title + " (" + data.Year + ")";
+            trailerHeader.innerText = "Movie clips from "+data.Title + " (" + data.Year + ")"
             castMembers = data.Actors.split(", ");
             castMember1.innerText = castMembers[0];
             castMember2.innerText = castMembers[1];
