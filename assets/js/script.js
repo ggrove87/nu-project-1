@@ -12,6 +12,7 @@ let castMember3 = document.querySelector("#castMember3");
 let synopsis = document.querySelector("#movieSynopsis");
 let moviePoster = document.querySelector("#moviePoster");
 let youTubeVideo = document.querySelector("#youtubeVideo");
+let youtubeKeyIndex = 0;
 inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector(".enteredMovie").value;
@@ -29,7 +30,8 @@ function pullMovieInfo() {
         .then((response) => response.json())
         .then((data) => {
             movieTitle.innerText = data.Title + " (" + data.Year + ")";
-            trailerHeader.innerText = "Movie clips from "+data.Title + " (" + data.Year + ")"
+            trailerHeader.innerText =
+                "Movie clips from " + data.Title + " (" + data.Year + ")";
             castMembers = data.Actors.split(", ");
             castMember1.innerText = castMembers[0];
             castMember2.innerText = castMembers[1];
@@ -44,7 +46,17 @@ function pullMovieInfo() {
 }
 
 function pullMovieTrailer() {
-    let apiKeyYouTube = "AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4";
+    // jason: AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4
+    // josh: AIzaSyDVFRBhkTYIeODoHkwB_HGX0a0Otbip_NM
+    let youtubeKeys = [
+        "AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4",
+        "AIzaSyDVFRBhkTYIeODoHkwB_HGX0a0Otbip_NM",
+    ];
+    let apiKeyYouTube = youtubeKeys[youtubeKeyIndex];
+    youtubeKeyIndex += 1;
+    if (youtubeKeyIndex > youtubeKeys[youtubeKeyIndex]) {
+        youtubeKeyIndex = 0;
+    }
     fetch(
         `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${enteredMovie}+trailer&key=${apiKeyYouTube}`,
         {
@@ -73,7 +85,7 @@ function storeMovieSearch(data, search) {
     }
     console.log(search);
     let currentSearch = {};
-    currentSearch[search] = {
+    currentSearch = {
         imdb: data.imdbID,
         search: search,
     };
