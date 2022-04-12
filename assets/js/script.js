@@ -1,4 +1,4 @@
-let searchBtn = document.querySelector("#searchBtn");
+let inputForm = document.querySelector("#inputForm");
 let enteredMovie;
 let movieTitle = document.querySelector("#movieTitle");
 let castMember1 = document.querySelector("#castMember1");
@@ -7,11 +7,12 @@ let castMember3 = document.querySelector("#castMember3");
 let synopsis = document.querySelector("#movieSynopsis");
 let moviePoster = document.querySelector("#moviePoster");
 let youTubeVideo = document.querySelector("#youtubeVideo");
-searchBtn.addEventListener("click", function (event) {
+inputForm.addEventListener("click", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector("#enteredMovie").value;
     pullMovieInfo();
     pullMovieTrailer();
+    inputForm.reset();
 });
 
 function pullMovieInfo() {
