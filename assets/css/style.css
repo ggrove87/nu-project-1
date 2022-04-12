@@ -5,6 +5,7 @@
 body {
     background: linear-gradient(-45deg, #5788fa, #0202fe, #23a6d5, #1406d5);
     /* height: 100%; */
+    /* color:white; */
 }
 
 .header {
@@ -18,7 +19,7 @@ body {
     /* flex-wrap: wrap; */
     justify-content: center;
     width: 50%;
-    padding: 20px;
+    /* padding: 2%; */
 }
 .pageBox {
     display: flex;
@@ -65,6 +66,32 @@ body {
     height: 100%;
 }
 
+.trailer h1 {
+    text-align: center;
+}
+
 .btn {
     /* height: 40px; */
+}
+
+.movieHeaderBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    /* width: 50%; */
+}
+
+.movieTitleBox {
+    width: 81%;
+    padding: 1%;
+}
+
+.moviePosterBox {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+
+#moviePoster {
+    box-shadow: 0px 0px 10px 2px black;
 }
