@@ -1,10 +1,11 @@
-let searchBtn = document.querySelector("#searchBtn");
+let inputForm = document.querySelector("#inputForm");
 let enteredMovie;
-searchBtn.addEventListener("click", function (event) {
+inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector("#enteredMovie").value;
     pullMovieInfo();
     pullMovieTrailer();
+    inputForm.reset();
 });
 
 function pullMovieInfo() {
