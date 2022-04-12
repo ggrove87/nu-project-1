@@ -73,7 +73,7 @@ function storeMovieSearch(data, search) {
     }
     console.log(search);
     let currentSearch = {};
-    currentSearch[search] = {
+    currentSearch = {
         imdb: data.imdbID,
         search: search,
     };
