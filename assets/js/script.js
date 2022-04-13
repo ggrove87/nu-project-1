@@ -57,6 +57,7 @@ function pullMovieTrailer() {
     let youtubeKeys = [
         "AIzaSyAqFrtQreRkV1LkaZO8evfjc0ArN7GeCv4", // jason
         "AIzaSyDVFRBhkTYIeODoHkwB_HGX0a0Otbip_NM", // josh
+        "AIzaSyCV42eYIcxlTbBmhr4pILqBTVMprY02esQ", // gene
     ];
     let apiKeyYouTube = youtubeKeys[youtubeKeyIndex];
     youtubeKeyIndex += 1;
