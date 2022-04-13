@@ -17,8 +17,8 @@ inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
-    // pullMovieTrailer();
-    // writePrev();
+    pullMovieTrailer();
+    writePrev();
     inputForm.reset();
 });
 
@@ -26,8 +26,7 @@ let formButton = document.querySelector("#inputForm a.btn");
 formButton.addEventListener("click", function (event) {
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
-    // pullMovieTrailer();
-    // writePrev();
+    pullMovieTrailer();
     inputForm.reset();
 });
 
@@ -52,6 +51,7 @@ function pullMovieInfo() {
             console.log(data);
             console.log(data.imdbID);
             storeMovieSearch(enteredMovie);
+            writePrev();
         });
 }
 
@@ -83,14 +83,12 @@ function pullMovieTrailer() {
 }
 
 let movieSearches = JSON.parse(localStorage.getItem("movieSearches"));
+const previousSearches = document.querySelector(".searchHistoryBox");
 if (movieSearches === null) {
     movieSearches = [];
+} else {
+    writePrev();
 }
-// const previousSearches = document.querySelector("#previousSearches");
-//  else {
-//   writePrev();
-// }
-
 
 /* store previous searches */
 function storeMovieSearch(search) {
@@ -108,18 +106,18 @@ function storeMovieSearch(search) {
 function writePrev() {
     previousSearches.innerHTML = "";
     for (let i = 0; i < 5 && i < movieSearches.length; i++) {
-        previousSearches.innerHTML += `<button class="capitalCase">${movieSearches[i]}</button>`;
+        previousSearches.innerHTML += `<a class="waves-effect waves-light btn history" id="history${i}">${movieSearches[i]}</a>`;
     }
     previousSearches.addEventListener("click", prevSearch);
 }
 
 /* function for click listener on previous search buttons */
 function prevSearch(event) {
-    if (event.target.matches("a.btn")) {
+    if (event.target.matches("a.btn.history")) {
         enteredMovie = event.target.innerText;
-        storeMovieSearch(oldSearch);
-        pullMovieInfo(oldSearch);
+        storeMovieSearch(enteredMovie);
+        pullMovieInfo(enteredMovie);
         writePrev();
-        // pullMovieTrailer(oldSearch);
+        pullMovieTrailer(enteredMovie);
     }
 }
