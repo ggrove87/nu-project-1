@@ -161,5 +161,11 @@ body {
     height: 80%;
     min-height: 400px;
     min-height: 500px;
+    /* background-image: url("https://w7.pngwing.com/pngs/627/528/png-transparent-frame-staff-video-symbol-icon-icons-thumbnail.png"); */
+    /* display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0; */
+    /* object-fit: scale-down; */
     box-shadow: 0px 0px 10px 2px black;
 }
