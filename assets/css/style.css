@@ -81,7 +81,7 @@ body {
 
 .movieHeaderBox {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: left;
     /* width: 50%; */
 }
