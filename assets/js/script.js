@@ -54,8 +54,7 @@ function pullMovieTrailer() {
         .then((response) => response.json())
         .then((data) => {
             youtubeData = data;
-            youTubeVideo.src =
-                "https://www.youtube.com/embed/" + data.items[0].id.videoId;
+            youTubeVideo.src ="https://www.youtube.com/embed/" + data.items[0].id.videoId;
             console.log(data);
             console.log(data.items[0].id.videoId);
         });
