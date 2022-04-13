@@ -33,7 +33,7 @@ function pullMovieInfo() {
     let apiKeyOMDB = "477f75d3";
     let castMembers = [];
     fetch(
-        `http://www.omdbapi.com/?apikey=${apiKeyOMDB}&t=${enteredMovie}&type=movie&plot=full`
+        `https://www.omdbapi.com/?apikey=${apiKeyOMDB}&t=${enteredMovie}&type=movie&plot=full`
     )
         .then((response) => response.json())
         .then((data) => {
