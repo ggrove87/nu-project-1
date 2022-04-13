@@ -18,6 +18,7 @@ inputForm.addEventListener("submit", function (event) {
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
     // pullMovieTrailer();
+    // writePrev();
     inputForm.reset();
 });
 
@@ -26,6 +27,7 @@ formButton.addEventListener("click", function (event) {
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
     // pullMovieTrailer();
+    // writePrev();
     inputForm.reset();
 });
 
@@ -117,6 +119,7 @@ function prevSearch(event) {
         enteredMovie = event.target.innerText;
         storeMovieSearch(oldSearch);
         pullMovieInfo(oldSearch);
+        writePrev();
         // pullMovieTrailer(oldSearch);
     }
 }
