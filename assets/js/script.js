@@ -18,6 +18,7 @@ inputForm.addEventListener("submit", function (event) {
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
     pullMovieTrailer();
+    writePrev();
     inputForm.reset();
 });
 
@@ -49,7 +50,8 @@ function pullMovieInfo() {
             movieData = data;
             console.log(data);
             console.log(data.imdbID);
-            storeMovieSearch(data, enteredMovie);
+            storeMovieSearch(enteredMovie);
+            writePrev();
         });
 }
 
@@ -81,36 +83,41 @@ function pullMovieTrailer() {
 }
 
 let movieSearches = JSON.parse(localStorage.getItem("movieSearches"));
+const previousSearches = document.querySelector(".searchHistoryBox");
 if (movieSearches === null) {
-    movieSearches = {};
+    movieSearches = [];
+} else {
+    writePrev();
 }
-function storeMovieSearch(data, search) {
-    // build object for the current search
+
+/* store previous searches */
+function storeMovieSearch(search) {
+    // current search lowercased and stored as var
     search = search.toLowerCase();
-    if (movieSearches[search] === undefined) {
-        movieSearches[search] = {};
-    }
-    console.log(search);
-    let currentSearch = {};
-    currentSearch = {
-        imdb: data.imdbID,
-        search: search,
-    };
-    movieSearches[search] = currentSearch;
-    console.log(movieSearches);
+    // current search added to beginning of stored array
+    movieSearches.unshift(search);
+    // remove duplicates
+    movieSearches = [...new Set(movieSearches)];
     // submit to localStorage
     localStorage.setItem("movieSearches", JSON.stringify(movieSearches));
 }
 
-function pullThemeMusic() {
-    fetch(
-        `https://[ENDPOINT].api.tunefind.com/api/v2/movie/matrix?id-type=tmbd/username=gwg1387:ABC#abc#789#`
-    )
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            console.log(
-                `https://[ENDPOINT].api.tunefind.com/api/v2/movie/matrix?id-type=tmbd`
-            );
-        });
+/* write buttons for previous searches */
+function writePrev() {
+    previousSearches.innerHTML = "";
+    for (let i = 0; i < 5 && i < movieSearches.length; i++) {
+        previousSearches.innerHTML += `<a class="waves-effect waves-light btn history" id="history${i}">${movieSearches[i]}</a>`;
+    }
+    previousSearches.addEventListener("click", prevSearch);
+}
+
+/* function for click listener on previous search buttons */
+function prevSearch(event) {
+    if (event.target.matches("a.btn.history")) {
+        enteredMovie = event.target.innerText;
+        storeMovieSearch(enteredMovie);
+        pullMovieInfo(enteredMovie);
+        writePrev();
+        pullMovieTrailer(enteredMovie);
+    }
 }
