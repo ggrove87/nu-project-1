@@ -17,7 +17,7 @@ inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
-    pullMovieTrailer();
+    // pullMovieTrailer();
     inputForm.reset();
 });
 
@@ -25,7 +25,7 @@ let formButton = document.querySelector("#inputForm a.btn");
 formButton.addEventListener("click", function (event) {
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
-    pullMovieTrailer();
+    // pullMovieTrailer();
     inputForm.reset();
 });
 
@@ -49,7 +49,7 @@ function pullMovieInfo() {
             movieData = data;
             console.log(data);
             console.log(data.imdbID);
-            storeMovieSearch(data, enteredMovie);
+            storeMovieSearch(enteredMovie);
         });
 }
 
@@ -82,22 +82,41 @@ function pullMovieTrailer() {
 
 let movieSearches = JSON.parse(localStorage.getItem("movieSearches"));
 if (movieSearches === null) {
-    movieSearches = {};
+    movieSearches = [];
 }
-function storeMovieSearch(data, search) {
-    // build object for the current search
+// const previousSearches = document.querySelector("#previousSearches");
+//  else {
+//   writePrev();
+// }
+
+
+/* store previous searches */
+function storeMovieSearch(search) {
+    // current search lowercased and stored as var
     search = search.toLowerCase();
-    if (movieSearches[search] === undefined) {
-        movieSearches[search] = {};
-    }
-    console.log(search);
-    let currentSearch = {};
-    currentSearch = {
-        imdb: data.imdbID,
-        search: search,
-    };
-    movieSearches[search] = currentSearch;
-    console.log(movieSearches);
+    // current search added to beginning of stored array
+    movieSearches.unshift(search);
+    // remove duplicates
+    movieSearches = [...new Set(movieSearches)];
     // submit to localStorage
     localStorage.setItem("movieSearches", JSON.stringify(movieSearches));
+}
+
+/* write buttons for previous searches */
+function writePrev() {
+    previousSearches.innerHTML = "";
+    for (let i = 0; i < 5 && i < movieSearches.length; i++) {
+        previousSearches.innerHTML += `<button class="capitalCase">${movieSearches[i]}</button>`;
+    }
+    previousSearches.addEventListener("click", prevSearch);
+}
+
+/* function for click listener on previous search buttons */
+function prevSearch(event) {
+    if (event.target.matches("a.btn")) {
+        enteredMovie = event.target.innerText;
+        storeMovieSearch(oldSearch);
+        pullMovieInfo(oldSearch);
+        // pullMovieTrailer(oldSearch);
+    }
 }
