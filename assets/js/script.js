@@ -21,6 +21,14 @@ inputForm.addEventListener("submit", function (event) {
     inputForm.reset();
 });
 
+let formButton = document.querySelector("#inputForm a.btn");
+formButton.addEventListener("click", function (event) {
+    enteredMovie = document.querySelector(".enteredMovie").value;
+    pullMovieInfo();
+    pullMovieTrailer();
+    inputForm.reset();
+});
+
 function pullMovieInfo() {
     let apiKeyOMDB = "477f75d3";
     let castMembers = [];
