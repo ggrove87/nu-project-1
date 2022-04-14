@@ -89,7 +89,7 @@ body {
 }
 
 .pageBox {
-    display: flex;
+    display: none;
     /* outline: solid 2px black; */
     width: 90vw;
     height: 100%;
