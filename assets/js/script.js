@@ -4,6 +4,7 @@ let enteredMovie;
 // set data from each fetch to a var for easy manipulation
 let movieData;
 let youtubeData;
+let pageBox = document.querySelector(".pageBox");
 let movieTitle = document.querySelector("#movieTitle");
 let trailerHeader = document.querySelector("#trailerHeader");
 let castMember1 = document.querySelector("#castMember1");
@@ -13,12 +14,16 @@ let synopsis = document.querySelector("#movieSynopsis");
 let moviePoster = document.querySelector("#moviePoster");
 let youTubeVideo = document.querySelector("#youtubeVideo");
 let youtubeKeyIndex = 0;
+
+pageBox.style.display = "none";
+
 inputForm.addEventListener("submit", function (event) {
     event.preventDefault();
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
     pullMovieTrailer();
     writePrev();
+    pageBox.style.display = "flex";
     inputForm.reset();
 });
 
@@ -27,6 +32,7 @@ formButton.addEventListener("click", function (event) {
     enteredMovie = document.querySelector(".enteredMovie").value;
     pullMovieInfo();
     pullMovieTrailer();
+    pageBox.style.display = "flex";
     inputForm.reset();
 });
 
@@ -117,6 +123,7 @@ function prevSearch(event) {
         enteredMovie = event.target.innerText;
         storeMovieSearch(enteredMovie);
         pullMovieInfo(enteredMovie);
+        pageBox.style.display = "flex";
         writePrev();
         pullMovieTrailer(enteredMovie);
     }
